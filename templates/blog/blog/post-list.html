@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load blog_tags %}
+
+{% block content %}
+ <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Blog Entries Column -->
+      <div class="col-md-8 bg-white">
+
+        <h2 class="my-4 t-h">
+          Blog Posts
+          {% if tag %}<small>Posts tagged with "{{ tag }}"</small>{% endif %}
+          {% if query %}<small>Search result for "{{ query }}"</small>{% endif %}
+        </h2>
+
+        {% for post in object_list %}
+           <!-- Blog Post -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-4">
+                  <img class="card-img-top" src="{{ post.image.url }}" alt="Card image cap">
+                </div>
+                <div class="col-sm-8">
+                  <h2 class="card-title ">{{ post.title }}</h2>
+                  <p class="card-text">{{ post.body|truncatewords:"10" }}</p>
+                  <a href="{{ post.get_absolute_url }}" class="btn default-btn">Read More &rarr;</a>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer text-muted">
+             <div class="d-flex justify-content-between">
+              <div>Published {{ post.publish }} by {{ post.author }}</div>
+              <div>
+                 Tags:
+                {% for tag in post.tags.all %}
+                  <a href="{% url "blog:post_list_by_tag" tag.slug %}">
+                    {{ tag.name }}
+                  </a>
+                  {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+              </div>
+             </div>
+            </div>
+          </div>
+        {% empty %}
+          <p class="lead">No posts found.</p>
+        {% endfor %}
+
+       
+
+        {% if is_paginated %}
+          {% include 'pagination.html' with page=page_obj %}
+        {% endif %}
+
+      </div>
+
+      <!-- Sidebar Widgets Column -->
+      <div class="col-md-4">
+
+        {% include 'partials/_search.html' %}
+
+        {% show_latest_posts 5 %}
+
+        <!-- Side Widget -->
+        <div class="card my-4">
+          <h5 class="card-header t-h">Most Commented Post</h5>
+          <div class="card-body">
+           {% get_most_commented_posts as most_commented_posts %}
+          <ul class="list-unstyled">
+            {% for post in most_commented_posts %}
+              <li>
+                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+{% endblock content %}

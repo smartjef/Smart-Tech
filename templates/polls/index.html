@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Poll Question{% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <table class="border p-4 m-3">
+                <thead class="table table-primary">
+                    <th colspan="3">
+                        Available Polls
+                    </th>
+                </thead>
+                <tbody>
+                    {% if latest_question_list %}
+                        {% for q in latest_question_list %}
+                        <tr>
+                            <td>{{q.question_text}}</td>
+                            <td><a class="btn btn-dft text-white btn-sm m-1" href="{% url 'polls:polls_detail' q.id %}"><i class="fas fa-vote-yea"></i> Vote</a></td>
+                            <td><a class="btn btn-dft text-white btn-sm" href="{% url 'polls:polls_results' q.id %}"><i class="fas fa-street-view"></i> View results</a></td>
+                        </tr>
+                        {%endfor%}
+                        <tr colspan="3">
+                            <td><a class="btn btn-sm btn-primary m-2 text-white" href="{% url 'polls:polls_create' %}"><i class="fa fa-edit" aria-hidden="true"></i> Add Poll</a></td>
+                        </tr>
+                    {%else%}
+                        <tr>
+                            <td colspan="3">No polls available</td>
+                        </tr>
+                    {%endif%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

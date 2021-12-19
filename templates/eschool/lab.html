@@ -1,0 +1,95 @@
+{% extends 'base.html'%}
+
+{% load static %}
+{%block title%}
+    Programming Lab
+{%endblock title%}
+
+{%block content%}
+<div class="row p-3" style="background-color: black;">
+    <h4 class="text-white" style="font-weight: bold; font-family: sans-serif; letter-spacing: 2px; border-bottom: 2px solid white;">LIVE LAB @<span style="color: #6257e3;">SM<i class="fa fa-graduation-cap" aria-hidden="true"></i>RT</span><span class="text-dft">TECH</span> SCHOOL</h4>
+</div>
+<p class="text-dft m-3">Might use the codes below for test</p>
+    <pre>
+        HTML:
+        <code class="language-html" contenteditable="True">
+            Test the blinking and color changing effects
+        </code>
+    </pre>
+        <pre>
+            CSS:
+            <code class="css" contenteditable="True">
+                body{
+                    font-size: 18px;
+                    color: #ac663e;
+                    margin: 5px;
+                    background-color: black;
+                    cursor: pointer;
+                }
+                body:hover{
+                    color: white;
+                    background-color: #ac663e;
+                    font-weight: bold;
+                    transform: rotate(180deg);
+                    transition-duration: .3s;
+                }
+            </code>
+        </pre>
+        <pre>
+            JS:
+            <code class="js" contenteditable="True">
+                var a = 5
+                var b = 12
+                var c = a + b;
+                document.write(a+" + "+b+" = "+ c);
+                document.write(" "+"Welcome")
+            </code>
+        </pre>
+<div class="card bg-dark mb-5">
+    <div class="container1 bg-dark mb-5 p-3">     
+        <div class="center1">
+            <code><b style="color: white;">OUTPUT:</b></code> <br>
+            <iframe id="output" class="form3" ></iframe>
+        </div>
+        <div class="code-input bg-dark p-2">
+            <code>
+                <label><b style="color: white;">HTML:</b></label>
+                <textarea id="html-code" placeholder="Enter html code here" class="form2" cols="" rows="">Test the blinking and color changing effects @TheProgrammer</textarea>
+                <label><b style="color: white;">CSS:</b></label>
+                <textarea id="css-code" class="form2" cols="" rows="" placeholder="Enter css code here"> 
+    
+                    body{
+                        font-size: 18px;
+                        color: #ac663e;
+                        margin: 5px;
+                        background-color: black;
+                        cursor: pointer;
+                    }
+                    body:hover{
+                        color: white;
+                        background-color: #ac663e;
+                        font-weight: bold;
+                        transform: rotate(180deg);
+                        transition-duration: .3s;
+                    }
+                    </textarea>
+                <label><b>JS:</b></label>
+                <textarea id="js-code" class="form2" cols="" rows="" placeholder="Enter javascript code here"></textarea>
+            </code>
+        </div>
+    </div>
+</div>
+<script>
+    function run(){
+        let htmlCode = document.querySelector("#html-code").value;
+        let cssCode = "<style>" + document.querySelector("#css-code").value + "</style>";
+        let jsCode = document.querySelector("#js-code").value;
+        let output = document.querySelector("#output");
+        output.contentDocument.body.innerHTML = htmlCode+cssCode;
+        output.contentWindow.eval(jsCode);
+    }
+    document.querySelector("#html-code").addEventListener("keyup", run);
+    document.querySelector("#css-code").addEventListener("keyup", run);
+    document.querySelector("#js-code").addEventListener("keyup", run);
+</script>
+{%endblock content%}

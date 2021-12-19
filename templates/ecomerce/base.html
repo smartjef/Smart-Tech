@@ -1,0 +1,581 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'scss/sb-admin-2.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/main.css' %}">
+    <link rel="shortcut icon" href="{% static 'img/[Original size] Smart Tech.png' %}" type="image/x-icon">
+    <!-- Material Design Iconic Font-V2.2.0 -->
+    <link rel="stylesheet" href="{% static 'css/material-design-iconic-font.min.css' %}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <!-- Font Awesome Stars-->
+    <link rel="stylesheet" href="{% static 'css/fontawesome-stars.css' %}">
+    <!-- Meanmenu CSS -->
+    <link rel="stylesheet" href="{% static 'css/meanmenu.css' %}">
+    <!-- owl carousel CSS -->
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <!-- Slick Carousel CSS -->
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <!-- Jquery-ui CSS -->
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}">
+    <!-- Venobox CSS -->
+    <link rel="stylesheet" href="{% static 'css/venobox.css' %}">
+    <!-- Nice Select CSS -->
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+    <!-- Magnific Popup CSS -->
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <!-- Bootstrap V4.1.3 Fremwork CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Helper CSS -->
+    <link rel="stylesheet" href="{% static 'css/helper.css' %}">
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- Modernizr js -->
+    <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
+    </head>
+    <title>Smart-Tech | {% block title %} {%endblock title%} </title>
+</head>
+    <body>
+        <div id="page-top" class="container-fluid" style="background-color: black;">
+            <header>
+                <!-- Begin Header Middle Area -->
+                <div class="header-middle pl-sm-0 pr-sm-0 pl-xs-0 pr-xs-0 ">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <!-- Begin Header Logo Area -->
+                            <div class="col-lg-3">
+                                <div class="logo pb-sm-30 pb-xs-30">
+                                    <a href="{% url 'shop:product_list' %}">
+                                        <img src="{% static 'img/Smart Tech.svg' %}" width="200" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Header Logo Area End Here -->
+                            <!-- Begin Header Middle Right Area -->
+                            <div class="col-lg-9 pl-0 ml-sm-15 ml-xs-15">
+                                <!-- Begin Header Middle Searchbox Area -->
+                                <form action="#" class="hm-searchbox">
+                                    <select class="nice-select select-search-category">
+                                        <option {% if not category %}class="selected"{% endif %}>
+                                            <a href="{% url 'shop:product_list' %}">All</a>
+                                        </option>
+                                            {% for c in categories %}
+                                        <option {% if category.slug == c.slug %}class="selected"{% endif %}>
+                                            <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                                        </option>
+                                            {%endfor%}
+                                    </select>
+                                    <input type="search" placeholder="Enter your search key ...">
+                                    <button class="li-btn" type="submit"><i class="fa fa-search"></i></button>
+                                </form>
+                                <!-- Header Middle Searchbox Area End Here -->
+                                <!-- Begin Header Middle Right Area -->
+                                <div class="header-middle-right">
+                                    <ul class="hm-menu">
+                                        <!-- Begin Header Mini Cart Area -->
+                                        <li class="hm-minicart">
+                                            <div class="hm-minicart-trigger">
+                                                <span class="item-icon"></span>
+                                                {% with total_items=cart|length %}
+                                                    {% if cart|length > 0 %}
+                                                    <span class="item-text">Ksh. {{ cart.get_total_price }}
+                                                        <span class="cart-item-count bg-warning">{{ total_items }}</span>
+                                                    </span>
+                                                    {% else %}
+                                                    <span class="item-text">Ksh. 0.00
+                                                        <span class="cart-item-count">0</span>
+                                                    </span>
+                                                    {% endif %}
+                                                {% endwith %}
+                                            </div>
+                                            <span></span>
+                                            <div class="minicart">
+                                                <ul class="minicart-product-list">
+                                                    {% with total_items=cart|length %}
+                                                    {% if cart|length > 0 %}
+                                                    <a href="{% url 'cart:cart_detail' %}">
+                                                    {{ total_items }} item{{ total_items|pluralize }},
+                                                    Ksh. {{ cart.get_total_price }}
+                                                    </a>
+                                                    {% else %}
+                                                    Your cart is empty.
+                                                    {% endif %}
+                                                    {% endwith %}
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <!-- Header Mini Cart Area End Here -->
+                                    </ul>
+                                </div>
+                                <!-- Header Middle Right Area End Here -->
+                            </div>
+                            <!-- Header Middle Right Area End Here -->
+                            <!-- Begin Mobile Menu Area -->
+                            <div class="mobile-menu-area d-lg-none d-xl-none col-12">
+                                <div class="container"> 
+                                    <div class="row">
+                                        <div class="mobile-menu">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Mobile Menu Area End Here -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Header Middle Area End Here -->
+                <!-- Begin Header Bottom Area -->
+                <div class="header-bottom header-sticky d-none d-lg-block d-xl-block" style="background-color: black;">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-12">
+                                <!-- Begin Header Bottom Menu Area -->
+                                <div class="hb-menu">
+                                    <nav>
+                                        <ul>
+                                            <li class="dropdown-holder"><a href="#">Home</a>
+                                                <ul class="hb-dropdown arrow">
+                                                    <li><a href="/">Main Homepage</a></li>
+                                                    <li class="active"><a href="{% url 'shop:product_list' %}">Ecomerce Homepage</a></li>
+                                                    <li><a href="{% url 'eschool_index' %}">School Homepage</a></li>
+                                                    <li><a href="{% url 'polls:polls_index' %}">Polling Homepage</a></li>
+                                                    <li><a href="">Cv master homepage</a></li>
+                                                    <li><a href="">Smart Tech Blog</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="megamenu-holder"><a href="shop-left-sidebar.html">Shop</a>
+                                                <ul class="megamenu hb-megamenu">
+                                                    {%if categories %}
+                                                    <li><a href="#" class="text-dark">Categories</a>
+                                                        <ul>
+                                                            <li {% if not category %}class="text-primary"{% endif %}>
+                                                                <a href="{% url 'shop:product_list' %}">All</a>
+                                                            </li>
+                                                            {% for c in categories %}
+                                                            <li {% if category.slug == c.slug %}class="primary"{% endif %}>
+                                                                <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                                                            </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </li>
+                                                    {% else %}
+                                                    <li><a href="#" class="text-dark">Main Links</a>
+                                                        <ul>
+                                                            <li><a href="{% url 'shop:product_list' %}">Product Categories</a></li>
+                                                            <li><a href="https://goo.gl/maps/jXQMRKzCB8h2hQcf6">Location</a></li>
+                                                            <li><a href="tel:+254202346703">Office Contact</a></li>
+                                                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                                                            <li><a href="{% url 'subscribe' %}">Subscribe</a></li>
+                                                            <li><a href="#">Go Premium</a></li>
+                                                            <li><a href="{% url 'shop:join' %}">Join Our Team</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    {% endif %}
+                                                    <li><a href="#" class="text-dark">Contact Center</a>
+                                                        <ul>
+                                                            <li><a href="{% url 'shop:product_list' %}">Product Categories</a></li>
+                                                            <li><a href="https://goo.gl/maps/jXQMRKzCB8h2hQcf6">Location</a></li>
+                                                            <li><a href="tel:+254202346703">Office Contact</a></li>
+                                                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                                                            <li><a href="{% url 'subscribe' %}">Subscribe</a></li>
+                                                            <li><a href="#">Go Premium</a></li>
+                                                            <li><a href="{% url 'shop:join' %}">Join Our Team</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#" class="text-dark">Services</a>
+                                                        <ul>
+                                                            <li><a href="{% url 'profile' %}">My Account</a></li>
+                                                            <li><a href="{% url 'orders:order_create' %}">Checkout</a></li>
+                                                            <li><a href="{% url 'cart:cart_detail' %}">Shopping Cart</a></li>
+                                                            <li><a href="{% url 'shop:about' %}#team">Our Team</a></li>
+                                                            <li><a href="{% url 'shop:about' %}">About Us</a></li>
+                                                            <li><a href="{% url 'service' %}">Services</a></li>
+                                                            <li><a href="faq.html">FAQ</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown-holder"><a href="blog-left-sidebar.html">Products</a>
+                                                <ul class="hb-dropdown">
+                                                    {%if categories %}
+                                                    <li class="sub-dropdown-holder"><a href="#">Categories</a>
+                                                        <ul class="hb-dropdown hb-sub-dropdown">
+                                                            <li {% if not category %}class="text-primary"{% endif %}>
+                                                                <a href="{% url 'shop:product_list' %}">All</a>
+                                                            </li>
+                                                            {% for c in categories %}
+                                                            <li {% if category.slug == c.slug %}class="primary"{% endif %}>
+                                                                <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                                                            </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </li>
+                                                    {% else %}
+                                                    <li class="sub-dropdown-holder"><a href="#">Main Links</a>
+                                                        <ul class="hb-dropdown hb-sub-dropdown">
+                                                            <li><a href="{% url 'shop:product_list' %}">Product Categories</a></li>
+                                                            <li><a href="https://goo.gl/maps/jXQMRKzCB8h2hQcf6">Location</a></li>
+                                                            <li><a href="tel:+254202346703">Office Contact</a></li>
+                                                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                                                            <li><a href="{% url 'subscribe' %}">Subscribe</a></li>
+                                                            <li><a href="#">Go Premium</a></li>
+                                                            <li><a href="{% url 'shop:teamsuccess' %}">Join Our Team</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    {% endif %}
+                                                    <li class="sub-dropdown-holder"><a href="#">Contact Center</a>
+                                                        <ul class="hb-dropdown hb-sub-dropdown">
+                                                            <li><a href="https://goo.gl/maps/jXQMRKzCB8h2hQcf6">Location</a></li>
+                                                            <li><a href="tel:+254202346703">Office Contact</a></li>
+                                                            <li><a href="{% url 'shop:product_list' %}">Product Categories</a></li>
+                                                            <li><a href="#">Go Premium</a></li>
+                                                            <li><a href="{% url 'shop:join' %}">Join Our Team</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="sub-dropdown-holder"><a href="#">Services</a>
+                                                        <ul class="hb-dropdown hb-sub-dropdown">
+                                                            <li><a href="{% url 'profile' %}">My Account</a></li>
+                                                            <li><a href="{% url 'orders:order_create' %}">Checkout</a></li>
+                                                            <li><a href="{% url 'cart:cart_detail' %}">Shopping Cart</a></li>
+                                                            <li><a href="{% url 'shop:about' %}#team">Our Team</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="sub-dropdown-holder"><a href="#">Other Services</a>
+                                                        <ul class="hb-dropdown hb-sub-dropdown">
+                                                            <li><a href="{% url 'shop:about' %}">About Us</a></li>
+                                                            <li><a href="{% url 'service' %}">Services</a></li>
+                                                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                                                            <li><a href="{% url 'subscribe' %}">Subscribe</a></li>
+                                                            <li><a href="faq.html">FAQ</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="megamenu-static-holder"><a href="index.html">Pages</a>
+                                                <ul class="megamenu hb-megamenu">
+                                                    <li><a href="#" class="text-dark">Categories</a>
+                                                        <ul>
+                                                            <li {% if not category %}class="text-primary"{% endif %}>
+                                                                <a href="{% url 'shop:product_list' %}">All</a>
+                                                            </li>
+                                                            {% for c in categories %}
+                                                            <li {% if category.slug == c.slug %}class="primary"{% endif %}>
+                                                                <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                                                            </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#" class="text-dark">Contact Center</a>
+                                                        <ul>
+                                                            <li><a href="https://goo.gl/maps/jXQMRKzCB8h2hQcf6">Location</a></li>
+                                                            <li><a href="tel:+254202346703">Office Contact</a></li>
+                                                            <li><a href="{% url 'shop:product_list' %}">Product Categories</a></li>
+                                                            <li><a href="#">Go Premium</a></li>
+                                                            <li><a href="{% url 'shop:join' %}">Join Our Team</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#" class="text-dark">Services</a>
+                                                        <ul>
+                                                            <li><a href="{% url 'profile' %}">My Account</a></li>
+                                                            <li><a href="{% url 'orders:order_create' %}">Checkout</a></li>
+                                                            <li><a href="{% url 'cart:cart_detail' %}">Shopping Cart</a></li>
+                                                            <li><a href="{% url 'shop:about' %}#team">Our Team</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#" class="text-dark">Other Services</a>
+                                                        <ul>
+                                                            <li><a href="{% url 'shop:about' %}">About Us</a></li>
+                                                            <li><a href="{% url 'service' %}">Services</a></li>
+                                                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                                                            <li><a href="{% url 'subscribe' %}">Subscribe</a></li>
+                                                            <li><a href="faq.html">FAQ</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown-holder"><a href="#">Account</a>
+                                                <ul class="hb-dropdown arrow">
+                                                    {%if user.is_authenticated%}
+                                                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                                                    <li><a href="{% url 'profile_update' %}">Update Profile</a></li>
+                                                    <li><a href="{% url 'settings' %}">Shortcuts</a></li>
+                                                    <li><a href="{% url 'account_email' %}">Change email</a></li>
+                                                    <li><a href="{% url 'account_logout' %}">Logout</a></li>
+                                                    {%else%}
+                                                    <li><a href="{% url 'account_login' %}">Login</a></li>
+                                                    <li><a href="{% url 'account_signup' %}">Register</a></li>
+                                                    {%endif%}
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'shop:about' %}">About Us</a></li>
+                                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <!-- Header Bottom Menu Area End Here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Header Bottom Area End Here -->
+            </header>
+            <!-- Header Area End Here -->
+        </div>
+        {% block content %}
+
+        {% endblock %}
+         <!-- Begin Footer Area -->
+         <div class="footer bg-light">
+            <!-- Begin Footer Static Top Area -->
+            <div class="footer-static-top">
+                <div class="container">
+                    <!-- Begin Footer Shipping Area -->
+                    <div class="footer-shipping pt-60 pb-55 pb-xs-25">
+                        <div class="row">
+                            <!-- Begin Li's Shipping Inner Box Area -->
+                            <div class="col-lg-3 col-md-6 col-sm-6 pb-sm-55 pb-xs-55">
+                                <div class="li-shipping-inner-box">
+                                    <div class="shipping-icon">
+                                        <img src="{% static 'images/shipping-icon/1.png' %}" alt="Delivery Icon">
+                                    </div>
+                                    <div class="shipping-text">
+                                        <h2>Free Delivery</h2>
+                                        <p>And free returns. See checkout for delivery dates.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Li's Shipping Inner Box Area End Here -->
+                            <!-- Begin Li's Shipping Inner Box Area -->
+                            <div class="col-lg-3 col-md-6 col-sm-6 pb-sm-55 pb-xs-55">
+                                <div class="li-shipping-inner-box">
+                                    <div class="shipping-icon">
+                                        <img src="{% static 'images/shipping-icon/2.png' %}" alt="Payment Icon">
+                                    </div>
+                                    <div class="shipping-text">
+                                        <h2>Safe Payment</h2>
+                                        <p>Pay with the world's most popular and secure payment methods.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Li's Shipping Inner Box Area End Here -->
+                            <!-- Begin Li's Shipping Inner Box Area -->
+                            <div class="col-lg-3 col-md-6 col-sm-6 pb-xs-30">
+                                <div class="li-shipping-inner-box">
+                                    <div class="shipping-icon">
+                                        <img src="{% static 'images/shipping-icon/3.png' %}" alt="Shop Icon">
+                                    </div>
+                                    <div class="shipping-text">
+                                        <h2>Shop with Confidence</h2>
+                                        <p>Our Buyer Protection covers your purchasefrom click to delivery.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Li's Shipping Inner Box Area End Here -->
+                            <!-- Begin Li's Shipping Inner Box Area -->
+                            <div class="col-lg-3 col-md-6 col-sm-6 pb-xs-30">
+                                <div class="li-shipping-inner-box">
+                                    <div class="shipping-icon">
+                                        <img src="{% static 'images/shipping-icon/4.png' %}" alt="Support Icon">
+                                    </div>
+                                    <div class="shipping-text">
+                                        <h2>24/7 Help Center</h2>
+                                        <p>Have a question? Call a Specialist or chat online.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Li's Shipping Inner Box Area End Here -->
+                        </div>
+                    </div>
+                    <!-- Footer Shipping Area End Here -->
+                </div>
+            </div>
+            <!-- Footer Static Top Area End Here -->
+            <!-- Begin Footer Static Middle Area -->
+            <div class="footer-static-middle">
+                <div class="container">
+                    <div class="footer-logo-wrap pt-50 pb-35">
+                        <div class="row">
+                            <!-- Begin Footer Logo Area -->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="footer-logo">
+                                    <img src="{% static 'img/Smart Tech.svg' %}" height="100" alt="Footer Logo">
+                                    <p class="info">
+                                        This is a company that is aimed at selling best quality technical devices at affordable prices as well as offers free delivery on certain products.
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Footer Logo Area End Here -->
+                            <!-- Begin Footer Block Area -->
+                            <div class="col-lg-2 col-md-3 col-sm-6">
+                                <div class="footer-block">
+                                    <h3 class="footer-block-title">Product</h3>
+                                    <ul>
+                                        <li><a href="{% url 'shop:about' %}">About Us</a></li>
+                                        <li><a href="{% url 'service' %}">Services</a></li>
+                                        <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                                        <li><a href="{% url 'subscribe' %}">Subscribe</a></li>
+                                        <li><a href="{% url 'shop:about' %}#team">Our Staff</a></p>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Footer Block Area End Here -->
+                            <!-- Begin Footer Block Area -->
+                            <div class="col-lg-2 col-md-3 col-sm-6">
+                                <div class="footer-block">
+                                    <h3 class="footer-block-title">Our company</h3>
+                                    <ul>
+                                        <li><a href="">Smart-Tech Blog</a></li>
+                                        <li><a href="{% url 'eschool_index' %}">E-School</a></li>
+                                        <li><a href="{% url 'shop:product_list' %}">E-comerce</a></li>
+                                        <li><a href="#">Cv Generator</a></li>
+                                        <li><a href="{% url 'shop:join' %}">Join Our Team</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Footer Block Area End Here -->
+                            <!-- Begin Footer Block Area -->
+                            <div class="col-lg-4">
+                                <div class="footer-block">
+                                    <h3 class="footer-block-title">Follow Us</h3>
+                                    <ul class="social-link">
+                                        <li class="twitter nmp">
+                                            <a href="https://twitter.com/Jeff18309725" class="text-white" data-toggle="tooltip" target="_blank" title="Twitter">
+                                                <i class="fab fa-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li class="rss nmp">
+                                            <a href="https://wa.me/c/254202346703" class="text-white" data-toggle="tooltip" target="_blank" title="Whatsapp">
+                                                <i class="fab fa-whatsapp"></i>
+                                            </a>
+                                        </li>
+                                        <li class="google-plus nmp">
+                                            <a href="https://m.me/smarttech.all" class="text-white" data-toggle="tooltip" target="_blank" title="Facebook Messenger">
+                                                <i class="fab fa-facebook-messenger"></i>
+                                            </a>
+                                        </li>
+                                        <li class="facebook nmp">
+                                            <a href="https://fb.me/smarttech.all" class="text-white" data-toggle="tooltip" target="_blank" title="Facebook">
+                                                <i class="fab fa-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li class="youtube nmp">
+                                            <a href="https://www.youtube.com/channel/UC4_F7e77uT7dG1EP99IdQow?sub_confirmation=1" class="text-white" data-toggle="tooltip" target="_blank" title="Youtube">
+                                                <i class="fab fa-youtube"></i>
+                                            </a>
+                                        </li>
+                                        <li class="instagram nmp">
+                                            <a href="https://www.instagram.com/smarttech.allservices" class="text-white" data-toggle="tooltip" target="_blank" title="Instagram">
+                                                <i class="fab fa-instagram"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <ul class="des">
+                                    <li>
+                                        <span>Address: </span>
+                                        <address>52106 - 00100, NAIROBI</address>
+                                    </li>
+                                    <li>
+                                        <span>Phone: </span>
+                                        <a href="tel:+254795067776">+254(0)795067776</a>
+                                    </li>
+                                    <li>
+                                        <span>Email: </span>
+                                        <a href="mailto:smarttech.allservices@gmail.ac.ke">smarttech.allservices@gmail.com</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Footer Block Area End Here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer Static Middle Area End Here -->
+            <!-- Begin Footer Static Bottom Area -->
+            <div class="footer-static-bottom pt-55 pb-55">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- Begin Footer Payment Area -->
+                            <div class="copyright text-center">
+                                <a href="#">
+                                    <img src="{% static 'images/payment/1.png' %}" class="nmp" alt="">
+                                </a>
+                            </div>
+                            <!-- Footer Payment Area End Here -->
+                            <!-- Begin Copyright Area -->
+                            <div class="copyright text-center pt-25">
+                                <span><a  href="{% url 'shop:product_list' %}">&copy;Smat-Tech Ecomerce - {% now "Y" %}</a></span>
+                            </div>
+                            <!-- Copyright Area End Here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer Static Bottom Area End Here -->
+        </div>
+        <!-- Footer Area End Here -->
+            <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded bg-dft text-white nmp" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+    <!-- Body Wrapper End Here -->
+    <!-- jQuery-V1.12.4 -->
+    <script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'js/vendor/popper.min.js' %}"></script>
+    <!-- Bootstrap V4.1.3 Fremwork js -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- Ajax Mail js -->
+    <script src="{% static 'js/ajax-mail.js' %}"></script>
+    <!-- Meanmenu js -->
+    <script src="{% static 'js/jquery.meanmenu.min.js' %}"></script>
+    <!-- Wow.min js -->
+    <script src="{% static 'js/wow.min.js' %}"></script>
+    <!-- Slick Carousel js -->
+    <script src="{% static 'js/slick.min.js' %}"></script>
+    <!-- Owl Carousel-2 js -->
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <!-- Magnific popup js -->
+    <script src="js/jquery.magnific-popup.min.js' %}"></script>
+    <!-- Isotope js -->
+    <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+    <!-- Imagesloaded js -->
+    <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+    <!-- Mixitup js -->
+    <script src="{% static 'js/jquery.mixitup.min.js' %}"></script>
+    <!-- Countdown -->
+    <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+    <!-- Counterup -->
+    <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+    <!-- Waypoints -->
+    <script src="{% static 'js/waypoints.min.js' %}"></script>
+    <!-- Barrating -->
+    <script src="{% static 'js/jquery.barrating.min.js' %}"></script>
+    <!-- Jquery-ui -->
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <!-- Venobox -->
+    <script src="{% static 'js/venobox.min.js' %}"></script>
+    <!-- Nice Select js -->
+    <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+    <!-- Main/Activator js -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="{% static '/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static '/vendor/bootstrap/js/bootstrap.js' %}"></script>
+    <script src="{% static '/vendor/bootstrap/js/bootstra.js' %}"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'vendor/fontawesome-free/js/all.min.js' %}"></script>
+    <script src="{% static 'vendor/smarttech.js' %}"></script>
+    </body>
+</html>

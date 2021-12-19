@@ -1,0 +1,15 @@
+<!-- Navigation -->
+{%load static%}
+<nav class="navbar navbar-expand-lg navbar-secondary shadow-md header-text fixed-top" style="background-color: black;">
+<div class="container-fluid font-weight-bold">
+    <div class="logo">
+        <img class="logo-img" src="{% static 'blog/img/Smart Tech.svg' %}" alt="">
+    </div>
+    <span>
+        <a href="{% url 'blog:post_list' %}" class="text-white">Home</a>
+        <a href="" class="text-white">Classes</a>
+        <a href="" class="text-white">Contact</a>
+    </span>
+    <a class="text-white disabled sm">Smart-Tech Blog</a>
+</div>
+</nav>

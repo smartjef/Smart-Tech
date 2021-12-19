@@ -1,0 +1,208 @@
+{%extends 'base.html' %}
+{%load static%} 
+{%block title%}Account Settings{%endblock title%}
+
+{%block content%} 
+<div class="row"> 
+    <div class="col-md-4 shadow p-3">
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h5 class="accordion-header" id="flush-headingOne"> 
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        <i class="fas fa-bars mr-3 fa-sm fa-fw text-gray-500"></i> Sub Menu
+                    </button>
+                </h5>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <a href="{% url 'about' %}" > <i class="fab fa-orcid mr-3 fa-sm fa-fw text-gray-500"></i>About</a> <br>
+                        <a href="{% url 'service' %}"><i class="fab fa-rev mr-3 fa-sm fa-fw text-gray-500"></i>Services</a> <br>
+                        <a href=""><i class="fas fa-blog mr-3 fa-sm fa-fw text-gray-500"></i>Smart Tech Blog</a> <br>
+                        <a href="{% url 'profile_update'%}"><i fas class="fa fa-university mr-3 fa-sm fa-fw text-gray-500"></i>E-school</a> <br>
+                        <a href="{% url 'profile'%}"><i class="fas fa-shopping-cart mr-3 fa-sm fa-fw text-gray-500"></i>E-commerce</a> <br>
+                        <a href="#"><i class="fas fa-file-csv mr-3 fa-sm fa-fw text-gray-500" ></i>CV-Generator</a> <br>
+                    </div>
+                </div>
+            </div> 
+
+            <div class="accordion-item">
+                <h5 class="accordion-header" id="flush-headingTwo"> 
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo"><i class="fab fa-git-alt mr-3 fa-sm fa-fw text-gray-500"></i> Site Extension
+                    </button>
+                </h5>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="subnav">
+                            <a href="https://sites.google.com/view/theprogrammerjeff/"> <i class="fa fa-university mr-3 fa-sm fa-fw text-gray-500" aria-hidden="true"></i>Home</a> <br>
+                            <a href="https://sites.google.com/view/theprogrammerjeff/c-programming"><i class="fas fa-fw fa-code mr-3 fa-sm fa-fw text-gray-500"></i>C Programming</a> <br>
+                            <a href="https://sites.google.com/view/theprogrammerjeff/history"><i class="fa fa-group mr-3 fa-sm fa-fw text-gray-500" aria-hidden="true"></i>Our Team</a> <br>
+                            <a href="https://sites.google.com/view/theprogrammerjeff/faq"><i class="fa fa-hacker-news fa-sm fa-fw mr-3 text-gray-500"></i>FAQs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h5 class="accordion-header" id="flush-headingFour"> 
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour"><i class="fa fa-envelope mr-3 fa-sm fa-fw text-gray-500"></i> Messages
+                    </button>
+                </h5>
+                <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        
+                            <div class="row">
+                                
+                                <a class="d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" height="30px" width="30px" src="{% static 'img/[Original size] Smart Tech.png' %}"
+                                            alt="...">
+                                        <div class="status-indicator bg-success"></div>
+                                    </div>
+                                    <small>
+                                        <div class="text-dark">
+                                            <div class="text-small">Thank you for registering with Smart-Tech Limited, Welcome and stay on board.</div>
+                                            <div class="small text-gray-500">Smart-Tech . {{user.date_joined}}</div>
+                                        </div>
+                                    </small>
+                                </a>
+                                <a class="d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" height="30px" width="30px" src="{% static 'img/undraw_profile.svg' %}"
+                                            alt="...">
+                                        <div class="status-indicator bg-success"></div>
+                                    </div>
+                                    <small>
+                                        <div class="text-dark">
+                                            <div class="text-small">Hello,am here to help you if you need any support </div>
+                                            <div class="small text-gray-500">Jeff Odhiambo . {{user.date_joined}}</div>
+                                        </div>
+                                    </small>
+                                </a> 
+                                <a class="text-center small m-2 p-2 btn btn-default btn-sm btn-block" href="">Read More Messages</a>
+                            </div>
+      
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h5 class="accordion-header" id="flush-headingFive"> 
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive"><i class="fas fa-bell mr-3 fa-sm fa-fw text-gray-500"></i> Notifications
+                    </button>
+                </h5>
+                <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="">
+                            <a class="d-flex align-items-center" href="#">
+                                <div class="mr-3">
+                                    <div class="icon-circle bg-primary">
+                                        <i class="fas fa-file-alt text-white"></i>
+                                    </div>
+                                </div>
+                                <small>
+                                <div>
+                                    <div class="small text-gray-500"> {{user.date_joined}}</div>
+                                    <span class="text-dark">Thanks for registering with Smart-Tech, all in one Service</span>
+                                </div>
+                                </small>
+                            <a class="text-center small m-2 p-2 btn btn-default btn-sm btn-block" href="">Show All Alerts</a>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+    </div>
+    <div class="col-md-4 shadow p-3">
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h5 class="accordion-header" id="flush-headingThree"> 
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                       <i class="far fa-user-circle mr-3 fa-sm fa-fw text-gray-500"></i> Profile's Shortcuts
+                    </button>
+                </h5>
+                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <a href="{% url 'profile'%}" ><i class="fas fa-eye mr-3 fa-sm fa-fw text-gray-500"></i>View Profile</a> <br>
+                        <a href="{% url 'profile_update'%}"><i class="fas fa-user-edit mr-3 fa-sm fa-fw text-gray-500" aria-hidden="true"></i>Update Profile</a>
+                    </div>
+                </div>
+            </div> 
+
+            <div class="accordion-item">
+                <h5 class="accordion-header" id="flush-headingSix"> 
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Account Shortcuts
+                    </button>
+                </h5>
+                <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <a href="{% url 'account_login'%}" ><i class="fas fa-fw fa-sign mr-3 fa-sm fa-fw text-gray-500"></i>Switch account</a> <br>
+                        <a href="{% url 'account_change_password'%}"><i class="fa fa-key mr-3 fa-sm fa-fw text-gray-500" aria-hidden="true"></i>Change password</a> <br>
+                        <a href="{% url 'account_reset_password' %}"><i class="fa fa-lock fa-sm fa-fw mr-3 text-gray-500"></i>Reset password</a> <br>
+                        <a href="{% url 'account_signup'%}"><i class="fa fa-edit mr-3 fa-sm fa-fw text-gray-500" aria-hidden="true"></i>Register</a> <br>
+                        <a href="{% url 'account_email'%}"><i class="fa fa-envelope mr-3 fa-sm fa-fw text-gray-500" aria-hidden="true"></i>Change Email</a> <br>
+                        <a href="{% url 'account_logout'%}"> <i class="fa fa-sign-out-alt mr-3 fa-sm fa-fw text-gray-500" aria-hidden="true"></i>End session</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h5 class="accordion-header" id="flush-headingSeven"> 
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSeven" aria-expanded="false" aria-controls="flush-collapseTwo"><i class="fab fa-connectdevelop fa-sm fa-fw mr-2 text-gray-400"></i> Stay in Touch
+                    </button>
+                </h5>
+                <div id="flush-collapseSeven" class="accordion-collapse collapse" aria-labelledby="flush-headingSeven" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="subnav">
+                            <a href="{% url 'contact' %}"> <i class="fa fa-phone mr-3 fa-sm fa-fw text-gray-500" aria-hidden="true"></i>Contact</a> <br>
+                            <a href="{% url 'subscribe' %}"><i class="far fa-newspaper mr-3 fa-sm fa-fw text-gray-500"></i>Subscribe</a> <br> 
+                            <a href="{% url 'contact' %}#location"><i class="fa fa-location-arrow mr-3 fa-sm fa-fw text-gray-500" aria-hidden="true"></i>Location</a> <br>
+                            <a href=""><i class="fab fa-hire-a-helper fa-sm fa-fw mr-3 text-gray-500"></i>E-help and Support</a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <div class="col-md-4">
+        <div class="container-fluid p-2 small bg-white shadow">
+            <div class="row justify-content-center align-items-center">
+                <div class="m-3 text-dft">
+                    <div class="icon-circle bg-success text-white" style="font-size: 16px;">
+                        <i class="fas fa-chalkboard-teacher" aria-hidden="true"></i>
+                    </div>{{teachers}} Lectures
+                </div>
+                <div class="m-3 text-dft">
+                    <div class="icon-circle bg-primary text-white" style="font-size: 16px;">
+                        <i class="fas fa-user-graduate" aria-hidden="true"></i>
+                    </div>{{students}} Students
+                </div>
+                <div class="m-3 text-dft">
+                    <div class="icon-circle bg-dark text-white" style="font-size: 16px;">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </div>{{parents}} Parents
+                </div>
+                <div class="m-3 text-dft">
+                    <div class="icon-circle bg-success text-white" style="font-size: 16px;">
+                        <i class="fas fa-code" aria-hidden="true"></i>
+                    </div>{{developers}} Developers
+                </div> 
+                <div class="m-3 text-dft">
+                    <div class="icon-circle bg-primary text-white" style="font-size: 16px;">
+                        <i class="fas fa-laptop-code" aria-hidden="true"></i>
+                    </div>{{designers}} Designers
+                </div>
+                <div class="m-3 text-dft">
+                    <div class="icon-circle bg-dark text-white" style="font-size: 16px;">
+                        <i class="fas fa-draw-polygon" aria-hidden="true"></i>
+                    </div>{{analysts}} Analysts
+                </div>
+                <div class="m-3 text-dft">
+                    <div class="icon-circle bg-dark text-white" style="font-size: 16px;">
+                        <i class="fab fa-blogger" aria-hidden="true"></i>
+                    </div>{{bloggers}} Bloggers
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock content%}

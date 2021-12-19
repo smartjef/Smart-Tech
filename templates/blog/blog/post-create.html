@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load blog_tags %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            <h5>Create a blog</h5>
+        </div>
+        <div class="card-body">
+            <div class="card-text">
+                <form action="" method="post">
+                    {%csrf_token%}
+                    {{form|as_p}}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

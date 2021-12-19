@@ -1,0 +1,255 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Homepage{% endblock title %}
+
+{% block content %}
+<div class="container-fluid bg-dark">
+    <div class="row">
+        <div class="col-md-5" style="background-color: black;">
+            <figure>
+                <img src="{% static 'img/Smart Tech.gif' %}" alt="" class="img-thumbnail">
+                <figcaption>
+                    <h4 class="text-white" style="font-weight: bold; font-family: sans-serif; letter-spacing: 2px; border-bottom: 2px solid white;"><span style="color: #6257e3;">SM<i class="fa fa-graduation-cap" aria-hidden="true"></i>RT</span><span class="text-dft">TECH</span> SCHOOL</h4>
+                    <p class="m-3">Bulid your Skills with <b>SmartTech School</b>, Register for a course, learn, get certificate, get your CV auto generated and get a job.</p>
+                    <a href="{% url 'eschool_index' %}" class="btn btn-dft text-white">Get Started</a>
+                </figcaption>
+            </figure>
+            <div class="mt-5">
+                <div class="row mt-3 bg-dft p-3">
+                    <header>
+                        <h3 style="font-weight:bold; font-family:sans-serif">Sample Courses</h3>
+                    </header>
+                </div>
+                <div class="row">
+                    <div class="card-group border-0" style="background-color: transparent;">
+                        <div class="card border-0" style="background-color: transparent; opacity: .7;">
+                            <img src="{% static 'img/sc.jpeg' %}" class="card-img" alt="">
+                            <div class="card-header">
+                                <h5 class="text-dft">Cyber Security</h5>
+                            </div>
+                            <div class="card-body">
+                                <p><b>Definition :-</b> This is the application of technologies, processes and controls to protect systems, network, programms and devices. It aims at reducing the rate of cyberattack and protects against unauthorised exploitation of systems.</p>
+                                <a href="{% url 'course_list' %}" class="btn btn-sm btn-dft text-white">Learn More</a>
+                            </div>
+                        </div>
+                        <div class="card border-0" style="background-color: transparent; opacity: .75;">
+                            <img src="{% static 'img/ml.jpeg' %}" class="card-img" alt="">
+                            <div class="card-header">
+                                <h5 class="text-dft">Machine Learning</h5>
+                            </div>
+                            <div class="card-body">
+                                <p><b>Definition :-</b> Its a method of data analysis that automates model building. Its a branch of artificial intelligence, based on the idea that systems can learn from data, identify patterns and make decision with minimal human intervention.</p>
+                                <a href="{% url 'course_list' %}" class="btn btn-sm btn-dft text-white">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <h3 style="text-align: center; color: white; font-weight:bold;">We take pride in the growing numbers in our company</h3>
+                </div>
+                <div class="row justify-content-center align-items-center mt-4">
+                    <div class="m-3 nmp text-dft text-center p-2" style="width:20%; border-radius: 50%;">
+                        <h5 style="font-size: 30px; font-weight: bold; font-family:sans-serif;">25 {{teachers}}</h5>
+                        <p>Lectures</p>
+                    </div>
+                    <div style="width: 10px; height: 10px; border-radius: 50%; background-color: white;"></div>
+                    <div class="m-3 nmp text-dft text-center p-2" style="width:20%; border-radius: 50%;">
+                        <h5 style="font-size: 30px; font-weight: bold; font-family:sans-serif;">105 {{students}}</h5>
+                        <p>Students</p>
+                    </div>
+                    <div style="width: 10px; height: 10px; border-radius: 50%; background-color: white;"></div>
+                    <div class="m-3 nmp text-dft text-center p-2" style="width:20%; border-radius: 50%;">
+                        <h5 style="font-size: 30px; font-weight: bold; font-family:sans-serif;">15 {{students}}</h5>
+                        <p>Patners</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <a href="{% url 'student_course_list' %}" class="btn btn-sm btn-dft m-2 ml-4 text-white p-2">Enrolled Courses</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc5-xUHtHeQg1X3j_d-_sKvx8xUXmj7Yzl1xoOf9BiXAi9epw/viewform?usp=send_form" class="btn btn-sm btn-dft m-2 text-white p-2">Become an instructor</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="row justify-content-end">
+                <div class="card border-0 bg-dark shadow-lg m-2" style="max-width: 100%;">
+                    <div class="card-header bg-dark">
+                        <h5>1. Select & Register a Course</h5>
+                    </div>
+                    <div class="card-img">
+                        <img src="{% static 'img/en.jpg' %}" class="img-thumbnail"  alt="">
+                    </div>
+                    <div class="card-body bg-secondary">
+                        <p class="text-white">Click on the link below and select the course you are intrested in, then enroll, join lots of students world wide in learning. Contact our able tutors throught their provided contacts incase of any query.</p>
+                        <a href="{% url 'course_list' %}" class="btn btn-sm btn-dft text-white">Start Learning</a>
+                    </div>
+                </div>
+                <div class="card border-0 bg-dark shadow-md p-2 m-2 rc">
+                    <div class="card-img">
+                        <img src="{% static 'img/Smart Certificate.png' %}" class="img-thumbnail"  alt="">
+                    </div>
+                    <div class="card-header bg-dark">
+                        <h5>2. Get Skill and Certificate</h5>
+                    </div>
+                    <div class="card-body bg-secondary">
+                        <p class="text-white">We issue Certificate for every course that a student has successfully completed. In addition to that the certificate is automatically added to your CV. <br>SmartTech also gives you the option to share your certificate with friend via whatsapp, facebook and linkedIn. To view Certificate templates click on the button below.</p>
+                        <a download href="{% static 'img/Smart Certificate.pdf' %}" class="btn btn-sm btn-dft text-white m-2"><i class="fa fa-eye mr-2" aria-hidden="true"></i>View Certificate</a> <br>
+                        <a href="{% static 'img/Smart Certificate.png' %}" target="_blank" class="btn btn-sm btn-dark m-2 text-white shadow" download="True"><i class="fa fa-download mr-2" aria-hidden="true"></i>Download</a>
+                    </div>
+                </div>
+                <div class="card border-0 bg-dark shadow p-2 m-2 rc">
+                    <div class="card-header bg-dark">
+                        <h5>3. Get your CV auto-generated</h5>
+                    </div>
+                    <div class="card-body bg-secondary text-white">
+                        <p>Once done obtaining skills, what next? <br>You need not to worry since SmartTech will generate for you the most modern CV that you can use world wide while looking for job.</p>
+                        <a href="{% url 'cv:index' %}" class="btn btn-sm btn-dft text-white">Visit Smart-CV</a>
+                    </div>
+                    <div class="card-img">
+                        <img src="{% static 'img/smart_cv.png' %}" class="img-thumbnail"  alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid bg-white">
+    <div class="row text-center pt-3">
+        <header>
+        <h3 style="font-weight: bold; font-family: sans-serif; letter-spacing: 2px;"><span style="color: #6257e3;">SM<i class="fa fa-shopping-bag" aria-hidden="true"></i>RT</span><span class="text-dft">TECH</span>  ECOMMERCE</h3>
+        </header>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 font-weight-bold text-center">
+            <h5>Shop Now</h5>
+        </div>
+        <div class="row p-3">
+            <div class="shadow col-md-3">
+                <img src="{% static 'img/e1.jpg' %}" class="card-img" alt="">
+                <div class="card-body">
+                    <p>Generic 14" - 42" TV Flat Pannel Wall Bracket Holder Black</p>
+                    <b style="color: #6257e3;">Ksh. 349</b> <strike style="color: red;">Ksh459</strike> <div class="badge badge-warning">-49%</div> <br>
+                    <span class="small"><i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-half" aria-hidden="true"></i></span>
+                </div>
+            </div>
+            <div class="shadow col-md-3">
+                <img src="{% static 'img/e2.jpg' %}" class="card-img" alt="">
+                <div class="card-body">
+                    <p>Hifinit 32 Inch Frameless Android Smart HD LED TV - Black</p>
+                    <b style="color: #6257e3;">Ksh. 14,999</b> <strike style="color: red;">Ksh 25,999</strike> <div class="badge badge-warning">-42%</div> <br>
+                    <span class="small"><i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-half" aria-hidden="true"></i></span>
+                </div>
+            </div>
+            <div class="shadow col-md-3">
+                <img src="{% static 'img/e5.jpg' %}" class="card-img" alt="">
+                <div class="card-body">
+                    <p>HP Refurbished Elitebook 820, 12.5", Corei5, 4GB RAM-+ 500 GB HDD - Black</p>
+                    <b style="color: #6257e3;">Ksh. 39,000</b><br>
+                    <span class="small"><i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-half" aria-hidden="true"></i></span>
+                </div>
+            </div>
+            <div class="shadow col-md-3">
+                <img src="{% static 'img/e3.jpg' %}" class="card-img" alt="">
+                <div class="card-body">
+                    <p>Power King 6 Way Power Extension 3M Cable + Free 2 Mobi Gifts</p>
+                    <b style="color: #6257e3;">Ksh. 699</b> <strike style="color: red;">Ksh 1200</strike> <div class="badge badge-warning">-49%</div> <br>
+                    <span class="small"><i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-half" aria-hidden="true"></i></span>
+                </div>
+            </div>
+            <div class="shadow col-md-3">
+                <img src="{% static 'img/e4.jpg' %}" class="card-img" alt="">
+                <div class="card-body">
+                    <p>Vitron Subwoofer HOMETHEATRE- Sound Bar USB/FM/BT-9,000W</p>
+                    <b style="color: #6257e3;">Ksh. 5,680</b> <strike style="color: red;">Ksh. 10,000</strike> <div class="badge badge-warning">-43%</div> <br>
+                    <span class="small"><i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-half" aria-hidden="true"></i></span>
+                </div>
+            </div>
+            <div class="shadow col-md-3">
+                <img src="{% static 'img/e8.jpg' %}" class="card-img" alt="">
+                <div class="card-body">
+                    <p>Generic P47 Wireless Bluetooth Headphone, Get Free Cap</p>
+                    <b style="color: #6257e3;">Ksh. 549</b> <strike style="color: red;">Ksh999</strike> <div class="badge badge-warning">-45%</div> <br>
+                    <span class="small"><i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-half" aria-hidden="true"></i></span>
+                </div>
+            </div>
+            <div class="shadow col-md-3">
+                <img src="{% static 'img/e7.jpg' %}" class="card-img" alt="">
+                <div class="card-body">
+                    <p>Generic F9 Bluetooth Wireless Earphone + 2000mAh Battery</p>
+                    <b style="color: #6257e3;">Ksh. 1,290</b> <strike style="color: red;">Ksh 1,763</strike> <div class="badge badge-warning">-27%</div> <br>
+                    <span class="small"><i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-half" aria-hidden="true"></i></span>
+                </div>
+            </div>
+            <div class="shadow col-md-3">
+                <img src="{% static 'img/e6.jpg' %}" class="card-img" alt="">
+                <div class="card-body">
+                    <p>Ulefone Note 10, 6.52", 2GB RAM + 32GB (Dual SIM), 5500mAh - Black</p>
+                    <b style="color: #6257e3;">Ksh. 8,999</b> <strike style="color: red;">Ksh 9,999</strike> <div class="badge badge-warning">-10%</div><br>
+                    <span class="small"><i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-half" aria-hidden="true"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <a href="{% url 'shop:product_list' %}" class="btn btn-dft text-white m-2"><i class="fa fa-shopping-cart" aria-hidden="true"></i> View All Products</a>
+                <a href="{% url 'shop:join' %}" class="btn btn-primary text-white m-2"><i class="fab fa-salesforce"></i> Join Team</a>   
+                <a href="{% url 'shop:about' %}" class="btn btn-dark text-white m-2"> About SmartTech Ecomerce</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid bg-dft">
+    <div class="row">
+        <div class="" style="background-color: black; max-width: 50%;">
+            <h4 style="font-weight: bold; font-family: sans-serif; letter-spacing: 2px; padding: 25px 15px;"><span style="color: #6257e3;">SM<i class="fas fa-blog"></i>RT</span><span class="text-dft">TECH</span>  BLOG</h4>
+            <img src="{% static 'img/2.jpg' %}" class="img-thumbnail" alt="">
+            <div class="container">
+                <p>Visit Smart Tech Blog, to interract with other users. To post questions and interract will other professionals. To learn more about SMARTTECT and the founder click on the link below.</p>
+                <a href="{% url 'blog:index' %}" class="btn btn-dft text-white btn-sm shadow m-2">Smart-Tech Blog</a>
+            </div>
+        </div>
+        <div class="" style="max-width: 50%;">
+            <h4 style="font-weight: bold; font-family: sans-serif; letter-spacing: 2px; background: black; padding: 25px 15px; margin:0;"><span style="color: #6257e3;">SM<i class="fas fa-vote-yea"></i>RT</span><span class="text-dft">TECH</span>  POLLING CENTER</h4>
+            <img src="{% static 'img/1.jpg' %}" class="card-img" style="border-radius: 0;" alt="">
+            <div class="container" style="padding: 8px;">
+                <p style="color: black;">SmartTech Offers additional site where individuals can create a poll or ask question or carry out questionaire. He/she is then able to share the post and others are able to vote. This make makes works easier for researchers as well as they are able to be provided with live updated results.</p>
+                <a href="{% url 'polls:polls_create' %}" class="btn nmp bg-white btn-sm m-2">Create A Poll</a>
+                <a href="{% url 'polls:polls_index' %}" class="btn nmp btn-dark text-white btn-sm m-2">View Polls</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content%}

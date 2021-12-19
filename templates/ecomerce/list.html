@@ -1,0 +1,225 @@
+{% extends "ecomerce/base.html" %}
+{% load static %}
+{% block title %}
+{% if category %}{{ category.name }}{% else %}Products{% endif %}
+{% endblock %}
+{% block content %}
+
+    <!-- Begin Body Wrapper -->
+    <div class="body-wrapper">
+        <!-- Begin Header Area -->
+
+        <!-- Begin Slider With Banner Area -->
+        <div class="slider-with-banner">
+            <div class="container">
+                <div class="row">
+                    <!-- Begin Slider Area -->
+                    <div class="col-lg-8 col-md-8">
+                        <div class="slider-area">
+                            <div class="slider-active owl-carousel">
+                                {% for product in products %}
+                                <!-- Begin Single Slide Area -->
+                                <div class="single-slide align-center-left  animation-style-01 bg-1 bg-white" style="background-image:url('{{ product.image.url }}'); background-size: cover;background-repeat: no-repeat; background-blend-mode:multiply; background-position: center center;">
+                                    <div class="slider-progress"></div>
+                                    <div class="slider-content">
+                                        <h5>Sale Offer <span class="badge badge-warning">-20% Off</span> This Week</h5>
+                                        <h2>{{ product.name }}</h2>
+                                        <h3>Starting at <span>Ksh{{ product.price }}</span></h3>
+                                        <div class="default-btn slide-btn">
+                                            <a class="btn btn-dft text-white nmp" href="{{ product.get_absolute_url }}">Buy Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <!-- Single Slide Area End Here -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slider Area End Here -->
+                    <!-- Begin Li Banner Area -->
+                    <div class="col-lg-4 col-md-4 text-center pt-xs-30">
+                        <div class="li-banner text-left bg-light nmp card">
+                            <h5 class="card-header">Categories</h5>
+                            <ul class="card-body">
+                                <li {% if not category %}class="text-primary"{% endif %}>
+                                    <a href="{% url 'shop:product_list' %}">All</a>
+                                </li>
+                                {% for c in categories %}
+                                <li {% if category.slug == c.slug %}class="primary"{% endif %}>
+                                    <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="li-banner mt-15 mt-sm-30 mt-xs-30 nmp">
+                            <a href="#">
+                                <img src="{% static 'images/banner/1_2.jpg' %}" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Li Banner Area End Here -->
+                </div>
+            </div>
+        </div>
+        <!-- Slider With Banner Area End Here -->
+
+        <!-- Begin Product Area -->
+        <div id="li-featured-product" class="tab-pane p-3" role="tabpanel">
+            <div class="row">
+                <h1>{% if category %}{{ category.name }}{% else %}Products{% endif%}</h1>
+            </div>
+            <div class="row">
+                <div class="product-active owl-carousel">
+                    {% for product in products %}
+                    <div class="col-lg-12 mt-5 mb-5">
+                        <!-- single-product-wrap start -->
+                        <div class="single-product-wrap">
+                            <div class="product-image">
+                                <a href="{{ product.get_absolute_url }}">
+                                    <img src="{% if product.image %}{{ product.image.url }}{%else %}{% static 'img/i.jpg' %}{% endif %}">
+                                </a>
+                                <span class="sticker nmp">New</span>
+                            </div>
+                            <div class="product_desc">
+                                <div class="product_desc_info">
+                                    <div class="product-review">
+                                        <h5 class="manufacturer">
+                                            <div class="text-gray">{{product.category}}</div>
+                                        </h5>
+                                    </div>
+                                    <h4><a class="product_name" href="{{ product.get_absolute_url }}">{{ product.name }}</a></h4>
+                                    <div class="price-box">
+                                        <span class="new-price">Ksh. {{product.price}}</span>
+                                    </div>
+                                </div>
+                                <div class="add-actions">
+                                    <ul class="add-actions-link">
+                                        <li class="add-cart active">
+                                            <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                                                {{ cart_product_form }}
+                                                {% csrf_token %}
+                                                <input type="submit" class="btn btn-dft text-white small btn-sm" value="Add to cart">
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- single-product-wrap end -->
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+        <div class="product-area mt-60 pb-50">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="li-product-tab">
+                            <ul class="nav li-product-menu">
+                               <li><a class="active" data-toggle="tab" href="#li-new-product"><span>New Arrival</span></a></li>
+                               <li><a data-toggle="tab" href="#li-bestseller-product"><span>Bestseller</span></a></li>
+                               <li><a data-toggle="tab" href="#li-featured-product"><span>Featured Products</span></a></li>
+                            </ul>               
+                        </div>
+                        <!-- Begin Li's Tab Menu Content Area -->
+                    </div>
+                </div>
+                <div class="tab-content">
+                    <div id="li-new-product" class="tab-pane active show" role="tabpanel">
+                        <div class="row">
+                            <div class="product-active owl-carousel">
+                                {% for product in products %}
+                                <div class="col-lg-12">
+                                    <!-- single-product-wrap start -->
+                                    <div class="single-product-wrap">
+                                        <div class="product-image">
+                                            <a href="{{ product.get_absolute_url }}">
+                                                <img src="{% if product.image %}{{ product.image.url }}{%else %}{% static 'img/i.jpg' %}{% endif %}">
+                                            </a>
+                                            <span class="sticker nmp">New</span>
+                                        </div>
+                                        <div class="product_desc">
+                                            <div class="product_desc_info">
+                                                <div class="product-review">
+                                                    <h5 class="manufacturer">
+                                                        <div class="text-gray">{{product.category}}</div>
+                                                    </h5>
+                                                </div>
+                                                <h4><a class="product_name" href="{{ product.get_absolute_url }}">{{ product.name }}</a></h4>
+                                                <div class="price-box">
+                                                    <span class="new-price">Ksh. {{product.price}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="add-actions">
+                                                <ul class="add-actions-link">
+                                                    <li class="add-cart active">
+                                                        <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                                                            {{ cart_product_form }}
+                                                            {% csrf_token %}
+                                                            <input type="submit" class="btn btn-dft text-white small btn-sm" value="Add to cart">
+                                                        </form>
+                                                    </li>
+                                                    <li><a href="{{ product.get_absolute_url }}" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- single-product-wrap end -->
+                                </div>
+                                {%endfor%}
+                            </div>
+                        </div>
+                    </div>
+                    <div id="li-bestseller-product" class="tab-pane" role="tabpanel">
+                        <div class="row">
+                            <div class="product-active owl-carousel">
+                                {% for product in products %}
+                                <div class="col-lg-12">
+                                    <!-- single-product-wrap start -->
+                                    <div class="single-product-wrap">
+                                        <div class="product-image">
+                                            <a href="{{ product.get_absolute_url }}">
+                                                <img src="{% if product.image %}{{ product.image.url }}{%else %}{% static 'img/i.jpg' %}{% endif %}">
+                                            </a>
+                                            <span class="sticker nmp">New</span>
+                                        </div>
+                                        <div class="product_desc">
+                                            <div class="product_desc_info">
+                                                <div class="product-review">
+                                                    <h5 class="manufacturer">
+                                                        <div class="text-gray">{{product.category}}</div>
+                                                    </h5>
+                                                </div>
+                                                <h4><a class="product_name" href="{{ product.get_absolute_url }}">{{ product.name }}</a></h4>
+                                                <div class="price-box">
+                                                    <span class="new-price">Ksh. {{product.price}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="add-actions">
+                                                <ul class="add-actions-link">
+                                                    <li class="add-cart active">
+                                                        <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                                                            {{ cart_product_form }}
+                                                            {% csrf_token %}
+                                                            <input type="submit" class="btn btn-dft text-white small btn-sm" value="Add to cart">
+                                                        </form>
+                                                    </li>
+                                                    <li><a href="{{ product.get_absolute_url }}" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- single-product-wrap end -->
+                                </div>
+                                {%endfor%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Product Area End Here -->
+    </div>
+{% endblock %}

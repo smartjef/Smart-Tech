@@ -1,0 +1,32 @@
+{% extends 'ecomerce/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Join Ecomerce Team{% endblock %}
+{% block content %}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-7">
+            <h2 class="p-2 font-weight-bold text-dft">Join Our great Team</h2>
+            <p class="p-5" style="font-size: 20px;">
+                Smart Tech gives you the opportunity to join us for free, so you can enjoy multiple of services as we serve the community. As you apply you can apply to be an agent, marketer, IT expert or the development team.
+            </p>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h4>Fill the form below</h4>
+            </div>
+            <div class="card-body">
+                <form action="" method="post" class="form">
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <button type="submit" class="btn btn-dft nmp text-white">Apply</button>
+                    <button type="reset" class="btn btn-light nmp">Reset</button>
+                    <button onclick="history.back()" class="btn btn-success nmp">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}

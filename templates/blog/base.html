@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Blogging Smart Tech System">
+    <meta name="author" content="Jeff Odhiambo">
+    <title>Smart-Tech Blog</title>
+    <link rel="stylesheet" href="{% static 'scss/sb-admin-2.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/main.css' %}">
+    <link rel="shortcut icon" href="{% static 'img/[Original size] Smart Tech.png' %}" type="image/x-icon">
+</head>
+
+<body>
+
+
+    <div class="container-fluid bg-light" id="content">
+        <div class="container pt-5">
+        {% block content %}
+
+
+        {% endblock content %}
+        </div>
+    </div>
+
+
+        <!-- Bootstrap core JavaScript-->
+        <script src="{% static '/vendor/jquery/jquery.min.js' %}"></script>
+        <script src="{% static '/vendor/bootstrap/js/bootstrap.js' %}"></script>
+        <script src="{% static '/vendor/bootstrap/js/bootstra.js' %}"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+        <script src="{% static 'vendor/fontawesome-free/js/all.min.js' %}"></script>
+        <script src="{% static 'vendor/smarttech.js' %}"></script>
+
+</body>
+</html>

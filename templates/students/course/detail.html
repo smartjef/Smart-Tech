@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+{{ object.title }}
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row text-dft card-header align-items-center" style="justify-content: space-between;">
+            <h3>{{ module.title }}</h3>
+
+            {% if course.owner %}
+            <div class="row align-items-center">
+                <img src="{% if course.owner.user_profile.profile_Pic %}{{course.owner.user_profile.profile_Pic.url}}{%else%} {% static 'img/undraw_profile.svg' %}{%endif%}" style="border-radius: 50%; height: 50px;" alt="{{course.owner}} ">
+                <div class="text-small text-dark m-2">
+                    Instructor:- <b>{{course.owner.get_full_name}}</b><br>
+                    Created at <b>{{course.created}}</b>
+                </div>
+            </div>
+            {% endif %}
+    </div>
+    <div class="row">
+        <div class="col-sm-7 col-md-3 bg-dark">
+            <div class="pt-3">
+                <h3 class="text-light">Modules</h3>
+                <ul class="ml-3">
+                {% for m in object.modules.all %}
+                <li data-id="{{ m.id }}" {% if m == module %} class="selected bg-secondary p-2"{% endif %}>
+                <a class="text-white" href="{% url 'student_course_detail_module' object.id m.id %}">
+                <span>
+                Module <span class="small text-light">{{ m.order|add:1}}</span>
+                </span>
+                <br>
+                {{ m.title }}
+                </a>
+                </li>
+                {% empty %}
+                <li>No modules yet.</li>
+                {% endfor %}
+                </ul>
+                </div>
+        </div>
+        <div class="col-md-9 bg-white">
+            <div class="module pt-3">
+                {% for content in module.contents.all %}
+                {% with item=content.item %}
+                <h4 class="text-dark">{{ item.title }}</h4>
+                {{ item.render }}
+                {% endwith %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

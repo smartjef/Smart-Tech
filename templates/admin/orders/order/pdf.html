@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartTech Ecomerce</title>
+</head>
+<body style="font-family: 'Times New Roman', Times, serif;">
+<div class="container-fluid">
+    <div class="row">
+        <h1 class="text-dark" style="font-weight: bold; font-family: sans-serif; letter-spacing: 2px; border-bottom: 2px solid white;"><span style="color: #6257e3;">SMART</span><span style="color: #ac663c;">TECH</span> ECOMMERCE</h1>
+        <div class="col-md-4">
+            <div class="card-header">
+                <p class="small" style="justify-content: space-between;">
+                    <span class="mr-5">Invoice no. {{ order.id }}</span>
+                    <span class="ml-5">{{ order.created|date:"M d, Y" }}</span>
+                </p>
+                <h5 class="text-dark font-weight-bold">Bill to</h5>
+                <p class="">
+                    <span>{{ order.first_name }} {{ order.last_name }}</span><br>
+                     {{ order.email }}<br>
+                     ADDRESS : <br>
+                    {{ order.address }} {{ order.postal_code }}, {{ order.city }}
+                </p>
+            </div>
+            <div class="card-body">
+                <h3 style="color: #ac663c;">Items bought</h3>
+                <table class="table table-info">
+                    <thead style="color:#6257e3;">
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in order.items.all %}
+                    <tr class="row{% cycle '1' '2' %}">
+                        <td>{{ item.product.name }}</td>
+                        <td class="text-right">Ksh. {{ item.price }}</td>
+                        <td class="text-right">{{ item.quantity }}</td>
+                        <td class="text-right">Ksh. {{ item.get_cost }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr class="font-weight-bold">
+                        <td colspan="3">Total</td>
+                        <td class="text-right" style="color:#6257e3;">Ksh. {{ order.get_total_cost }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    {% if order.paid %}
+    <div style="border : solid 3px green; padding: 10px; max-width: 300px; transform: rotate(-25deg); text-align:center;">
+        <b style="color: green;font-size: 28px;">PAID</b>
+        <p class="small">
+            <b style="font-family:cursive">J. Odhiambo</b> <br>
+            <span style="font-family: sans-serif; color: royalblue;">{{ order.created|date:"d M, Y" }}</span> <br>
+        </p>
+    </div>
+    {% else %}
+    <div style="border : solid 3px red; padding: 10px; max-width: 300px; transform: rotate(-25deg); text-align:center;">
+        <b style="color: red;font-size: 28px;">PENDING PAYMENT</b>
+        <p class="small">
+            <b style="font-family:cursive">J. Odhiambo</b> <br>
+            <span style="font-family: sans-serif; color:royalblue;">{{ order.created|date:"d M, Y" }}</span> <br>
+        </p>
+    </div>
+    {% endif %}
+    <footer>
+        <div class="text-center">
+            &copy; SMARTTECH ECOMERCE <br>
+            <b>Contact</b> <br>
+            <p>
+                <a href="tel:+254795067776">0795067776</a>
+                <a href="mailto:smarttech.allservices@gmail.com">Send Mail</a>
+                <a href="{% url 'contact' %}">send feedback</a>
+                <a href="{% url 'subscribe' %}">subscribe</a>
+                <a href="{% url 'about' %}">about us</a>
+                <a href="{% url 'eschool_index' %}">smarttech school</a>
+                <a href="{% url 'shop:product_list' %}">smarttech ecomerce</a>
+                <a href="/">main homepage</a>
+            </p>
+        </div>
+    </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Delete course{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="alert alert-danger">
+        <h4>You are about to delete '{{object.title}}'</h4>
+    </div>
+    <div class="row">
+        <div class="card shadow m-3">
+            <div class="card-header p-2">
+                <h1>Delete course "{{ object.title }}"</h1>
+            </div>
+            <div class="card-body">
+                <div class="module">
+                    <form action="" method="post">
+                    {% csrf_token %}
+                    <p>Are you sure you want to delete "{{ object }}"?</p>
+                    <button type="submit" class="btn btn-dft m-2">Confirm</button>
+                    <button onclick="history.back();" class="btn btn-success m-2 text-white">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

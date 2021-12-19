@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block title %}Service Page {%endblock%}
+{%block content %}
+<div class="container-fluid" style="background-color: black;">
+    <div class="row">  
+        <div class="border-0 text-white p-5">   
+            <h3><strong class="font-weight-bold text-center text-dft" title="about smart-tech">About Smart-Tech</strong></h3>
+            <section class="row p-2 align-items-center">
+                <div class="col-md-4">
+                    <img src="{% static 'img/Smart Tech.gif' %}" class="img-fluid" title="Smart-tech" alt="Smart-tech">
+                </div>
+                <div class="col-md-8">
+                    <p>Jeff Odhiambo, a student from Jommo Kenyatta university of Agriculture and Technology, at First Year came up with a idea of creating a&nbsp;Smart School, that is capable&nbsp;of assising students who might be intrested in learning Technology related courses and are not able to afford the fees. <br>
+                    The name of his small organisation is Smart Tech as it not only offers education services but also alot of other IT services. <br>
+                    In His school, teachers can register with him but agrees to offer free classes before being allowed to proceed in teaching. His learning materials are also assesed to ensure that they are not misleading. <br>
+                </div>
+            </section>
+            <section class="row p-2 align-items-center">
+                <aside class="col-md-8"> 
+                    <h2 class="text-dft">Smart-Tech</h2>
+                    <p>The&nbsp;first version of the Smart Tech was uploaded in 20th August 2020, but the allocated space in the host was limited. Since the system was to host videos, powerpoint, notes, pictures as well as audios. it was full by October. And was stopped from running. <br>
+                    Once a student has registered for a unit, the sstem will be able to keep track of all the activities of the student&nbsp;and upon completion of that particular course the student will be awarder with certificate of perticipation if he attains 85% and above&nbsp;in the overal grade and certificate of exellence if he scored 100% in the overal grade.</p>
+                    </p>
+                </aside>
+                <div class="col-md-4"><img class="img-fluid" src="{% static 'img/1.jpg' %}" alt="More info"></div>
+            </section>
+        </div>
+    </div>
+</div>
+{%endblock%}

@@ -1,0 +1,88 @@
+{% extends "ecomerce/base.html" %}
+{% load static %}
+{% block title %}
+{% if category %}{{ category.name }}{% else %}About Page{% endif %}
+{% endblock %}
+{% block content %}
+<!-- Begin Li's Breadcrumb Area -->
+<div class="breadcrumb-area">
+    <div class="breadcrumb-content">
+        <ul>
+            <li><a href="{% url 'shop:product_list' %}">Home</a></li>
+            <li class="active">About Us</li>
+        </ul>
+    </div>
+</div>
+<!-- Li's Breadcrumb Area End Here -->
+
+<!-- about wrapper start -->
+<div class="about-us-wrapper pt-60 pb-40">
+    <div class="container">
+        <div class="row">
+            <!-- About Text Start -->
+            <div class="col-lg-6 order-last order-lg-first">
+                <div class="about-text-wrap">
+                    <h2><span>Provide Best</span>Product For You</h2>
+                    <p>We provide the best tech devices all over the world. We are the world best store in Kenya for Smart Tech devices. You can buy our product without any hesitation because they trust us and buy our product without any hasitation, because they belive and always happy to buy our product.</p>
+                    <p>Some of our customer say’s that they trust us and buy our product without any hasitation because they belive in us and always happy to buy our product.</p>
+                    <p>We provide the best Product world wide as well as the best services you can ever imagine of.</p>
+                </div>
+            </div>
+            <!-- About Text End -->
+            <!-- About Image Start -->
+            <div class="col-lg-5 col-md-10">
+                <div class="about-image-wrap">
+                    <img class="img-full" src="{% static 'images/product/large-size/13.jpg' %}" alt="About Us" />
+                </div>
+            </div>
+            <!-- About Image End -->
+        </div>
+    </div>
+</div>
+<!-- about wrapper end -->
+<!-- team area wrapper start -->
+
+<div class="team-area pt-60 pt-sm-44">
+    <div class="container">
+        {% for t in team %}
+        {% if t.is_approved %}
+        <div class="row">
+            <div class="col-12">
+                <div class="li-section-title capitalize mb-25">
+                    <h2><span>our team</span></h2>
+                </div>
+            </div>
+        </div> 
+        {%endif%}
+        {%endfor%}
+        <!-- section title end -->
+        <div class="row" id="team">
+            {% for team in team %}
+            {%if team.is_approved%}
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="team-member mb-60 mb-sm-30 mb-xs-30">
+                    <div class="team-thumb">
+                        <img src="{% if team.img %}{{team.img.url}}{% else %}{% static 'images/team/1.png' %} {%endif%}" alt="{{team.name}}">
+                    </div>
+                    <div class="team-content text-center">
+                        <h3>{{team.name}}</h3>
+                        <p>{{team.position}}</p>
+                        <a href="mailto:{{team.email}}">Send Mail</a>
+                        <div class="team-social">
+                            <a href="{{team.fb_link}}"><i class="fab fa-facebook"></i></a>
+                            <a href="{{team.twitter_link}}"><i class="fab fa-twitter"></i></a>
+                            <a href="{{team.linkedin}}"><i class="fab fa-linkedin"></i></a>
+                            <a href="{{team.whatsapp_link}}"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            {%endif%}
+            {%endfor%}
+            <!-- end single team member -->
+        </div>
+    </div>
+</div>
+<!-- team area wrapper end -->
+
+{%endblock%}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Poll Detail Page{% endblock %}
+{% block content %}
+{%if error_message %}
+<div class="alert alert-danger">
+    <p> <strong>{{error_message}}</strong></p>
+</div>
+{%endif%}
+<div class="container-fluid">
+    <div class="row">
+        <div class="card m-3">
+            <div class="card-header text-center">
+                <h5>{{q.question_text}}</h5>
+            </div>
+            <div class="card-body">
+                <form action="{% url 'polls:polls_vote' q.id %}" method="post">
+                    {% csrf_token %}
+                    {% for c in q.choice_set.all %}
+                    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{c.id}}">
+                    <label for="choice{{ forloop.counter }}">{{c.choice_text}} </label> <br>
+                    {%endfor%}
+                    <input type="submit" class="btn btn-success" value="Vote">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

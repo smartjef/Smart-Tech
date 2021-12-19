@@ -1,0 +1,24 @@
+<!-- Pagination -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+<nav aria-label="Page navigation example" class="mt-2">
+    <ul class="pagination justify-content-end">
+    {% if page.has_previous %}
+    <li class="page-item"><a class="page-link" href="?page={{ page.previous_page_number }}">Previous</a></li>
+    {% endif %}
+    <li class="page-item active">
+     <a class="page-link" href="#">Page {{ page.number }} of {{ page.paginator.num_pages }}</a>
+    </li>
+    {% if page.has_next %}
+    <li class="page-item"><a class="page-link" href="?page={{ page.next_page_number }}">Next</a></li>
+    {% endif %}
+</ul>
+</nav>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+{% if object %}
+Edit content "{{ object.title }}"
+{% else %}
+Add a new content
+{% endif %}
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row p-3 shadow-sm">
+        <h3>
+            {% if object %}
+            Edit content "{{ object.title }}"
+            {% else %}
+            Add a new content
+            {% endif %}
+        </h3>
+    </div>
+    <div class="row">
+        <div class="container m-3">
+            <div class="card border-0">
+                <h2 class="card-header bg-dft text-white">Course info</h2>
+                <div class="card-body">
+                <form action="" method="post" enctype="multipart/form-data">
+                {{ form|crispy }}
+                {% csrf_token %}
+                <p>
+                    <button class="btn btn-dft text-white btn-sm m-2" type="submit">Save</button>
+                    <button class="btn btn-success btn-sm m-2" type="reset">Reset</button>
+                    <button class="btn btn-primary btn-sm m-2" onclick="history.back();">Back</button>
+                </p>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

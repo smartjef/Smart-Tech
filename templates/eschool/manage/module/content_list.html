@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load course %}
+{% block title %}
+Module {{ module.order|add:1 }}: {{ module.title }}
+{% endblock %}
+{% block content %}
+{% with course=module.course %}
+<div class="container-fluid">
+    <div class="row text-dft card-header">
+        <span>
+            <h3>Course "{{ course.title }}"</h3>
+            <div class="text-small text-dark">Created by <b>{{course.owner}}</b> at <b>{{course.created}}</b></div>
+        </span>
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-sm-7 bg-dark">
+            <div class="pt-3">
+                <h3 class="text-light">Modules</h3>
+                <ul class="ml-3">
+                    {% for m in course.modules.all %}
+                    <li data-id="{{ m.id }}" {% if m == module %} class="selected bg-secondary p-1"{% endif %}>
+                    <a class="text-white" href="{% url 'module_content_list' m.id %}">
+                    <span class="small text-light">Module <span class="order">{{ m.order|add:1 }}</span></span>
+                    <br>
+                    {{ m.title }}
+                    </a>
+                    </li>
+                    {% empty %}
+                    <li>No modules yet.</li>
+                    {% endfor %}
+                </ul>
+                <p><a class="btn btn-sm btn-success text-white m-2" href="{% url 'course_module_update' course.id %}">Edit modules</a></p>
+            </div>
+        </div>
+        <div class="col-md-9 bg-white">
+            <div class="module pt-3">
+                <h2>Module {{ module.order|add:1 }}: {{ module.title }}</h2>
+                <h3>Module contents:</h3>
+                <div id="module-contents">
+                    {% for content in module.contents.all %}
+                    <div data-id="{{ content.id }}">
+                    {% with item=content.item %}
+                    <p>{{ item }} ({{ item|model_name }})</p>
+                    
+                    <div class="row">
+                        <a class="btn btn-success text-white btn-sm m-2" href="{% url 'module_content_update' module.id item|model_name item.id %}"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
+                        <form action="{% url 'module_content_delete' content.id %}" method="post">
+                        <button type="submit" class="btn btn-danger text-white btn-sm m-2"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+                        {% csrf_token %}
+                        </form>
+                    </div>
+                    {% endwith %}
+                    </div>
+                    {% empty %}
+                    <p>This module has no contents yet.</p>
+                    {% endfor %}
+                </div>
+                <div class="text-dark mt-2 pt-2 pb-2" style="border-top: solid gray 1px;">
+                    <h5>Add new content:</h5>
+                    <ul class="content-types row">
+                    <li><a class="btn btn-dark shadow btn-sm text-white m-2" href="{% url 'module_content_create' module.id "text" %}"><i class="fa fa-edit" aria-hidden="true"></i> Text</a></li>
+                    <li><a class="btn btn-dark shadow btn-sm text-white m-2" href="{% url 'module_content_create' module.id "image" %}"><i class="fa fa-image" aria-hidden="true"></i> Image</a></li>
+                    <li><a class="btn btn-dark shadow btn-sm text-white m-2" href="{% url 'module_content_create' module.id "video" %}"><i class="fa fa-video" aria-hidden="true"></i> Video</a></li>
+                    <li><a class="btn btn-dark shadow btn-sm text-white m-2" href="{% url 'module_content_create' module.id "file" %}"><i class="fa fa-file" aria-hidden="true"></i> File</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endwith %}
+{% endblock %}
+{% block domready %}
+$('#modules').sortable({
+    stop: function(event, ui) {
+        modules_order = {};
+        $('#modules').children().each(function(){
+            // update the order field
+            $(this).find('.order').text($(this).index() + 1);
+            // associate the module's id with its order
+            modules_order[$(this).data('id')] = $(this).index();
+        });
+        $.ajax({
+            type: 'POST',
+            url: '{% url "module_order" %}',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: JSON.stringify(modules_order)
+            });
+    }
+});
+$('#module-contents').sortable({
+    stop: function(event, ui) {
+        contents_order = {};
+        $('#module-contents').children().each(function(){
+            // associate the module's id with its order
+            contents_order[$(this).data('id')] = $(this).index();
+        });
+        $.ajax({
+            type: 'POST',
+            url: '{% url "content_order" %}',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: JSON.stringify(contents_order),
+        });
+    }
+});
+{% endblock %}

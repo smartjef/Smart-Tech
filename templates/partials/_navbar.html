@@ -1,0 +1,134 @@
+<!-- Navigation -->
+{%load static%}
+<!-- Topbar -->
+<header id="page-top"></header>
+<nav class="navbar navbar-expand navbar-light bg-light topbar mb-4 static-top shadow">
+
+    <!-- Sidebar Toggle (Topbar) -->
+    <button id="sidebarToggleTop" class="btn text-dft d-md-none rounded-circle mr-3">
+        <i class="fa fa-bars"></i>
+    </button>
+
+    <!-- Topbar Search -->
+    <form action="" method="get"
+        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        <div class="input-group">
+            <input type="search" class="form-control bg-light border-0 small" name="q" placeholder="Search for..."
+                aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-dft" type="submit">
+                    <i class="fas fa-search fa-sm"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+    <!-- Nav Item - User Information -->
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="" id="userDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-dft-600 small">Home</span>
+
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--glow-in"aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="{% url 'index' %}">Homepage</a>
+                <a class="dropdown-item" href="{% url 'service' %}">Services</a>
+                <a class="dropdown-item" href="{% url 'about' %}">About Us </a>
+                <a class="dropdown-item" href="{% url 'contact' %}#location">Location</a>
+                <a class="dropdown-item" href="{% url 'contact' %}">Contact</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-dft-600 small">Blog</span>
+
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="userDropdown">
+                <a href="" class="dropdown-item">My Blog</a>
+                <a href="" class="dropdown-item">Smart-Tech Blog</a>
+                <a href="" target="_blank" class="dropdown-item">Join the Blogging Team</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-dft-600 small">CV Master</span>
+
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="{% url 'cv:index' %}">CV Master</a>
+                <a href="" class="dropdown-item">My CV</a>
+                <a href="" class="dropdown-item">View CV templates</a>
+                <a href="" class="dropdown-item">Create CV</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-dft-600 small">Smart School</span>
+
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="userDropdown">
+                <a href="{% url 'eschool_index' %}" class="dropdown-item">School Homepage</a>
+                <a href="{% url 'course_list' %}" class="dropdown-item">Courses</a>
+                <a href="{% url 'student_course_list' %}" class="dropdown-item">Enrol a course</a>
+                <a href="https://theprogrammer.pythonanywhere.com/" target="_blank" class="dropdown-item">Additional site</a>
+                <a href="{% url 'lab' %}" class="dropdown-item">Live Lab</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-dft-600 small">Smart Ecomerce</span>
+
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="userDropdown">
+                <a href="{% url 'shop:product_list' %}" class="dropdown-item">Product Categories</a>
+                <a href="{% url 'orders:order_create' %}" class="dropdown-item">Buy product</a>
+                <a href="{% url 'cart:cart_detail' %}" class="dropdown-item">View Cart</a>
+                <a href="{% url 'shop:join' %}" class="dropdown-item">Become an agent</a>
+                <a href="{% url 'shop:about' %}" class="dropdown-item">About Page</a>
+            </div>
+        </li>
+    </ul>
+
+    <!-- Topbar Navbar -->
+    <ul class="navbar-nav ml-auto">
+        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+        <li class="nav-item dropdown no-arrow d-sm-none">
+            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+            </a>
+            <!-- Dropdown - Messages -->
+            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search" action="" method="get">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input type="search" name="q" class="form-control bg-light border-0 small"
+                            placeholder="Search for..." aria-label="Search"
+                            aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-dft" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </li>
+    </ul>
+    {% include 'partials/_account.html' %}
+</nav>
+<!-- End of Topbar -->

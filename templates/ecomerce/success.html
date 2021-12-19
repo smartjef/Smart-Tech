@@ -1,0 +1,17 @@
+{% extends 'ecomerce/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Join Ecomerce Team{% endblock %}
+{% block content %}
+
+<div class="alert alert-success">
+    Your application was successfully sent, our board will go through it shortly.
+</div>
+
+<div class="container-fluid">
+    <div class="row p-5">
+        <a class=" btn btn-success text-white m-2" href="{% url 'shop:product_list' %}">Go Shopping</a>
+        <a class="btn btn-dft text-white m-2" href="/">Skip to main page</a>
+    </div>
+</div>
+
+{%endblock%}

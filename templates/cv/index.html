@@ -1,0 +1,158 @@
+{%extends 'base.html' %}
+{% block title %}  CV{% endblock title%}
+{% block content %}
+
+<div class="container">
+    <div class="row p-0 m-0 bg-white" style="border-bottom: 3px solid green;">
+        {% for dat in data %}
+        <div class="col-sm-3">
+            <img src="{{dat.img.url}}" class="img-thumbnail1" alt="Developers picture">
+        </div>
+        <div class="col-sm-9">
+            <div class="container-fluid ">
+                <div class="row " style="place-content: space-between;">
+                    <div class="col-sm-7">
+                        <div class="text-primary font-weight-bold" style="text-transform: capitalize; font-size: 25px;">{{dat.name}}</div>
+                        INFORMATION TECHNOLOGY STUDENT
+                    </div>
+                    <div class="col-sm-5">
+                        ACTION CENTER: <br> <br>
+                        <span>
+                        <a href=""><i class="fa fa-facebook bg-primary text-white p-2" aria-hidden="true"style="border-radius:50%; font-size: 20px;"></i></a> 
+                        <a href=""><i class="fa fa-whatsapp bg-primary text-white p-2" aria-hidden="true" style="border-radius:50%; font-size: 20px;"></i></a>
+                        <a href=""><i class="fa fa-telegram bg-primary text-white p-2" aria-hidden="true" style="border-radius:50%; font-size: 20px;"></i></a>
+                        <a href="mailto:theprogrammerjeff@gmail.com"><i class="fa fa-envelope bg-primary text-white p-2" aria-hidden="true" style="border-radius:50%; font-size: 20px;"></i></a>
+                        <a href="tel: +254{{dat.tel}}"><i class="fa fa-phone bg-primary text-white p-2" aria-hidden="true" style="border-radius:50%; font-size: 20px;"></i></a>
+                        </span>
+                    </div>
+                </div>
+                <b>CONTACT INFO</b>
+                <div class="row border"></div>
+                <div class="row">
+                    <div class="col">
+                        WEBSITE <br>
+                        <a href="{{dat.website}}">The-Programmer</a>
+                    </div>
+                    <div class="col">
+                        PHONE <br>
+                        <a href="tel:+254{{dat.tel}}">0795067776</a>
+                    </div>
+                    <div class="col">
+                        Email <br>
+                        <a href="mailto:theprogrammerjeff@gmail.com">Click</a>
+                    </div>
+                    <div class="col">
+                        ADDRESS <br>
+                        <a href="">52106-NAIROBI</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="container-fluid">
+        <h5 class="text-success font-weight-bold">PERSONAL STATEMENT</h5>
+        Am an <a href="">Information Technology</a> student at <a href="">Jommo Kenyatta University of Agriculture and Technology</a> currently a second year. <br>
+        Am equipped with web design and development knowledge with <a href="">Django Framework</a> <br>
+        Am a full stack developer <br>
+    </div>
+    <div class="container-fluid">
+        <h5 class="text-success font-weight-bold">PROFFESSIONAL EXPERIENCE</h5>
+        <div class="row">
+            <div class="col-sm-4">
+                Jan 2021 - 
+            </div>
+            <div class="col-sm-8">
+                <a href="">Safaricom Limited</a>. <br>
+                Senior web designer and developer. <br>
+                I do both the front-end and backend perfectly. <br>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <h5 class="text-success font-weight-bold">EDUCATION</h5>
+        <div class="row mb-3">
+            <div class="col-sm-4">
+                Oct - 
+            </div>
+            <div class="col-sm-8">
+                <a href="">Jommo Kenyatta University of Agriculture and Technology(JKUAT)</a>. <br>
+                Degree - Information Technology
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-4">
+                Feb 2015 - Nov 2018 
+            </div>
+            <div class="col-sm-8">
+                <a href="">St. Joseph's School, Rapogi</a>. <br>
+                KCSE, Secondary level
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-4">
+                Feb 2010 - Nov 2012 
+            </div>
+            <div class="col-sm-8">
+                <a href="">Pace Academy(Kisii)</a>. <br>
+                KCPE, Primary level
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row mb-3">
+            <div class="col-sm-6">
+                <h5 class="text-success font-weight-bold">SKILLS</h5>
+                <div class="row">
+                    {% for skill in skills %}
+                    <div class="col-sm-6">
+                        {{skill.name}} <br>
+                    </div>
+                    <div class="col-sm-6">
+                        {{skill.level}} <br>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h5 class="text-success font-weight-bold">LANGUAGES</h5>
+                <div class="row">
+                    <div class="col-sm-6">
+                        English <br>
+                        Kiswahili <br>
+                        Luo
+                    </div>
+                    <div class="col-sm-6">
+                        Advanced <br>
+                        Advanced <br>
+                        Advanced
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <h5 class="text-success font-weight-bold">CERTIFICATIONS</h5>
+        {% for cert in cetificate %}
+        <div class="row mb-2">
+            <div class="col-sm-4">
+                <img src="{{cert.img.url}}" alt="{{cert.course}} image" height="80px" width="80px">
+            </div>
+            <div class="col-sm-8">
+                {{cert.course}} <br>
+                <a href="{{cert.school_link}}">{{cert.university}}</a> - Issued {{cert.date_offered}} <br>
+                <a href="{{cert.credential_link}}"><div class="btn btn-sm btn-outline-success text-center" style="width: 250px;">See credential</div></a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="container-fluid mb-5">
+        <h5 class="text-success font-weight-bold">HOBBIES & INTRESTS</h5>
+        <div class="col-sm-12">
+            Web and android apps design, watching IT related movies and coding.
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

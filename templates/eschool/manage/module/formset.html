@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+Edit "{{ course.title }}"
+{% endblock %}
+{% block content %}
+<div class="container-fuid">
+    <div class="row p-3 shadow">
+        <h1>Edit "{{ course.title }}"</h1>
+    </div>
+    <div class="row">
+        <div class="container">
+            <div class="card m-3">
+                <div class="card-header bg-dft text-white">
+                <h2 class="">Course modules</h2>
+                </div>
+                <div class="card-body">
+                    <form action="" method="post">
+                    {{ formset|crispy }}
+                    {{ formset.management_form}}
+                    {% csrf_token %}
+                        <button type="submit" class="btn btn-dft btn-sm text-white m-2"><i class="fa fa-save" aria-hidden="true"></i> Save modules</button>
+                        <button type="reset" class="btn btn-success btn-sm text-white m-2">Reset</button>
+                        <button onclick="history.back();" class="btn btn-primary btn-sm text-white m-2">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

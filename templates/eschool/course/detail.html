@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{%load static%}
+{% block title %}
+{{ object.title }}
+{% endblock %}
+{% block content %}
+{% with subject=course.subject %}
+<div class="container-fluid">
+    <div class="row shadow p-3">
+        <h1>{{ object.title }} Overview</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-7 m-3 bg-white p-3">
+            <h2 class="text-dft">Overview</h2>
+            <div class="row">
+                <img src="{% static 'img/sc.jpeg' %}" class="m-2" height="150" alt="{{course.title}}" title="{{course.title}}">
+                <span class="p-2">
+                    Course: {{course.title}} <br>
+                    Category: <a href="{% url 'course_list_subject' subject.slug %}">{{ subject.title }}</a>. <br>
+                    <span class="small text-secondary">
+                        {{ course.modules.count }} modules.
+                        Instructor - {{ course.owner.get_full_name }} <br>
+                        Created on {{course.created}}
+                    </span>
+                    <p>{{ object.overview|linebreaks }}</p>
+                </span>
+            </div>
+            {% if request.user.is_authenticated %}
+            <form action="{% url 'student_enroll_course' %}" method="post">
+            {{ enroll_form }}
+            {% csrf_token %}
+            <button type="submit" class="btn btn-dft m-2">Enroll now</button>
+            </form>
+            {% else %}
+            <a href="{% url 'account_signup' %}" class="btn btn-dft m-2 text-white">Register to enroll</a> OR
+            <a href="{% url 'account_login' %}" class="btn btn-dft m-2 text-white">Login to enroll</a>
+            {% endif %}
+        </div>
+        <div class="col-md-4 m-3 shadow p-3" style="background-color: aliceblue;">
+            <h5 class="text-center text-dark bg-white shadow p-3"><i class="fa fa-info-circle mr-3 text-dft" aria-hidden="true"></i>About Constructor</h5>
+            <div class="row">
+                <img src="{% if course.owner.user_profile.profile_Pic %}{{course.owner.user_profile.profile_Pic.url}}{%else%} {% static 'img/undraw_profile.svg' %}{%endif%}" style="border-radius: 50%; height: 150px;" alt="{{course.owner}} ">
+                <span class="text-secondary text-center" style="width: 60%;">
+                    <span class="small">Name</span> <br> <b>{{course.owner.get_full_name}}</b> <br>
+                    <span class="small">About</span> <br> <b>{{course.owner.user_profile.bio|truncatechars:20}}</b> <br>
+                    <span class="text-dft mt-2">Contact</span>
+                    <div class="row">
+                        <div class="container d-flex">
+                            <a href="tel:{{course.owner.user_profile.phone}}">
+                                <div style="font-size: 15px; color: rgb(185, 184, 184); border-radius : 50%; height: 40px; width:40px; background-color: aliceblue;" class="nmp m-2 p-2">
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                </div>
+                            </a>
+                            <a href="mailto:{{course.owner.email}}">
+                                <div style="font-size: 15px; color: rgb(185, 184, 184); border-radius : 50%; height: 40px; width:40px; background-color: aliceblue;" class="nmp m-2 p-2">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endwith %}
+{% endblock %}

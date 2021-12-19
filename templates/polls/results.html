@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Poll Question{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="card m-3">
+            <div class="card-header text-center">
+                <h5>Poll Results for "{{question.question_text}}"</h5>
+            </div>
+            <div class="card-body">
+                {% for c in question.choice_set.all %}
+                    <p>{{c.choice_text}} -- {{c.voters}} vote{{ c.voters|pluralize}}</p>
+                {%endfor%}
+            </div>
+            <a class="btn btn-dft text-white m-2" style="max-width: 150px;" href="{% url 'polls:polls_detail' question.id %}">View Post</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
